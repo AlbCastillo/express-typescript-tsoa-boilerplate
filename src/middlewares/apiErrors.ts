@@ -34,7 +34,7 @@ export function errorAPIHandler(
 		return res.status(err.statusCode).json({
 			name: err.name,
 			statusCode: err.statusCode,
-			message: serializeError(err),
+			message: err.message,
 		});
 	}
 	if (err instanceof ValidateError) {
@@ -48,7 +48,7 @@ export function errorAPIHandler(
 		return res.status(500).json({
 			name: 'InternalServerError',
 			statusCode: 500,
-			message: serializeError(err),
+			message: err.message,
 		});
 	}
 	next();
