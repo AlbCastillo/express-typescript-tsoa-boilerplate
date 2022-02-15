@@ -1,0 +1,81 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is an example of documentation using Swagger",
+    "version": "1.0.0",
+    "title": "Express TSOA Typescript Boilerplate",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "example@mail.com"
+    },
+    "license": {
+      "name": "ISC",
+      "url": "https://opensource.org/licenses/ISC"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Example Routes",
+      "description": "Hello World"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Hello World example route",
+        "description": "",
+        "operationId": "helloWorld",
+        "tags": [
+          "Example Routes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Succesfully created a new GesExtensionRequest",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Hello World!!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 500
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Internal Server Error"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
