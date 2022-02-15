@@ -58,13 +58,4 @@ app.use(
 	swaggerUi.setup(swaggerJSON),
 );
 
-/**
- * SERVER RUNNING ON
- */
-
-// const server = app.listen(port, () => {
-// 	logger.debug(`APP LISTENING AT http://localhost:${port}`);
-// });
-
-// export default server;
 export default app;
