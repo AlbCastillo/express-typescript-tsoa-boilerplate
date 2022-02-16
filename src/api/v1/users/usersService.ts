@@ -1,40 +1,75 @@
+/* eslint-disable class-methods-use-this */
 import { singleton } from 'tsyringe';
-import { User } from './user';
+import { IUser, UserModel } from './user';
 import logger from '../../../logging/winstonLogger';
+import { ApiError } from '../../../middlewares/apiErrors';
 
-// A post request should not contain an id.
-export type UserCreationParams = Pick<
-	User,
-	'firstname' | 'lastname' | 'email' | 'admin'
->;
 @singleton()
 export class UsersService {
-	private placeholder: string;
-
-	constructor() {
-		this.placeholder = 'blurgh';
-	}
-
-	public get(id: string, email?: string): User {
-		this.placeholder = '';
-		logger.info(`getting user with id:  ${id}`);
-		return {
-			id,
-			email: email || 'jane@doe.com',
-			firstname: 'Jne',
-			lastname: 'Doe',
-			admin: false,
-		};
-	}
-
-	public create(userCreationParams: UserCreationParams): User {
-		if (this.placeholder !== '') {
-			this.placeholder = '';
+	/**
+	 *  GET USER BY ID
+	 * @param userId => uuid v4
+	 * @returns UserModel
+	 */
+	async get(userId: string): Promise<IUser> {
+		try {
+			logger.info(`getting User with id: ${userId}`);
+			const user = await UserModel.findOne({ id: userId });
+			if (user) {
+				return user;
+			}
+			throw new Error('User not found!');
+		} catch (error: any) {
+			logger.error(`Error getting User: ${error.message}`);
+			if (error.message === 'User not found!') {
+				throw new ApiError({
+					statusCode: 404,
+					name: 'NotFound',
+					message: error.message,
+				});
+			}
+			throw new ApiError({
+				statusCode: 500,
+				name: 'InternalServerError',
+				message: `Opps and error ocurred!`,
+			});
 		}
+	}
 
-		return {
-			id: Math.floor(Math.random() * 10000).toString(), // Random
-			...userCreationParams,
-		};
+	async getAll(): Promise<IUser[]> {
+		try {
+			const users = await UserModel.find();
+			return users;
+		} catch (error: any) {
+			throw new ApiError({
+				statusCode: 500,
+				name: 'InternalServerError',
+				message: `Opps an error ocurred!`,
+			});
+		}
+	}
+
+	/**
+	 * CREATE AN USER
+	 * @param user => User create params
+	 * @returns userId
+	 */
+	async create(user: {
+		firstname: string;
+		lastname: string;
+		email: string;
+		admin: boolean;
+	}): Promise<void> {
+		try {
+			logger.info(`Creating a new User`);
+			await UserModel.create(user);
+		} catch (error: any) {
+			logger.error(`Error creating User ${error.message}`);
+			throw new ApiError({
+				statusCode: 500,
+				name: 'InternalServerError',
+				message: `Opps an error ocurred`,
+			});
+		}
 	}
 }

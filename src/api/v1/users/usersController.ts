@@ -5,12 +5,11 @@ import {
 	Get,
 	Path,
 	Post,
-	Query,
 	Route,
 	SuccessResponse,
 } from 'tsoa';
-import { User } from './user';
-import { UsersService, UserCreationParams } from './usersService';
+import { IUser } from './user';
+import { UsersService } from './usersService';
 
 @injectable()
 @Route('v1/users')
@@ -20,21 +19,30 @@ export class UsersController extends Controller {
 		super();
 	}
 
-	@Get('{userId}')
-	public async getUser(
-		@Path() userId: string,
-		@Query() email?: string,
-	): Promise<User> {
+	@Get('/get/{userId}')
+	public async getUser(@Path() userId: string): Promise<IUser> {
 		this.setStatus(200); // set return status 200
-		return this.usersService.get(userId, email);
+		return this.usersService.get(userId);
+	}
+
+	@Get('/all')
+	public async getAllUser(): Promise<IUser[]> {
+		this.setStatus(200);
+		return this.usersService.getAll();
 	}
 
 	@SuccessResponse('201', 'Created') // Custom success response
 	@Post()
 	public async createUser(
-		@Body() requestBody: UserCreationParams,
+		@Body()
+		requestBody: {
+			firstname: string;
+			lastname: string;
+			email: string;
+			admin: boolean;
+		},
 	): Promise<void> {
 		this.setStatus(201); // set return status 201
-		this.usersService.create(requestBody);
+		return this.usersService.create(requestBody);
 	}
 }

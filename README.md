@@ -6,7 +6,9 @@ This template comes with many features as : JWT authentication,hexagonal archite
 Swagger documentation, dependency injection container, error handler, logging system and others.
 
 - [Branch: Mongoose](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/mongoose): Branch to use a MongoDB using mongoose as ODM
-- [Branch: Sequelize](): Branch to use PostgreSQL using sequelize as ORM
+- [Branch: Sequelize](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/sequelize): Branch to use PostgreSQL using sequelize as ORM
+
+In this branch the boilerplate we will use ***MongoDB*** as database and **Mongoose** as ODM
 
 ## Table of Contents
 - [Express TSOA Typescript Boilerplate](#express-tsoa-typescript-boilerplate)
@@ -35,6 +37,8 @@ Swagger documentation, dependency injection container, error handler, logging sy
 - [Helmet](https://helmetjs.github.io): Secure Express apps by setting HTTP headers 
   
 - [Lodash](https://lodash.com): Utility library
+
+- [Mongoose](https://mongoosejs.com): Mongo ODM
   
 - [Swagger UI Express](https://github.com/scottie1984/swagger-ui-express): Documentation generator & hosting
 
@@ -91,13 +95,20 @@ yarn build
 ```bash
 yarn dev
 ```
-6. After that, go to: ```http://localhost:8080```
+6. After that, go to:
+ ```http://localhost:8080``` OR ```http://localhost:8080/v1/users/1```
 
 
 ### Build a new module using Plop
 1. Execute the command:
  ```yarn plop:module ```
 2. Follow the terminal's instructions
+
+Generated files when the command is executed(name & version are prompt's input):
+
+- **Model** : *src/api/v<version>/<name>.model.ts*
+- **Service**: *src/api/v<version>/<name>sService.ts*
+- **Controller**: *src/api/v<version>/<name>sController.ts*
 
 ### Swagger-Documentation
 
@@ -110,16 +121,16 @@ To update your API Documentation you must modified the file ```src/swagger.json`
 Avoid hook : **git commit -m "Your message" --no-verify**
 ### Available scripts
 
-- `yarn build` - Build the routes and specs from tsoa and compile typescript.
-- `yarn lint` - Lint your TS code,
-- `yarn lint:fix` - Lint and automatically fix your TS code.
-- `yarn dev` - Run the server locally.
-- `yarn clean` - Remove build, tsoa_generated and coverage folders,
-- `yarn test` - Run all tests.
-- `yarn test:unit` - Run unit tests.
-- `yarn test:integration` - Run integration tests.
-- `yarn plop:module` -  generate a new module for API with a simple CRUD
-- `yarn prepare:husky` - prepare husky hooks
+- `build` - Build the routes and specs from tsoa and compile typescript.
+- `lint` - Lint your TS code,
+- `lint:fix` - Lint and automatically fix your TS code.
+- `dev` - Run the server locally.
+- `clean` - Remove build, tsoa_generated and coverage folders,
+- `test` - Run all tests.
+- `test:unit` - Run unit tests.
+- `test:integration` - Run integration tests.
+- `plop:module` -  generate a new module for API with a simple CRUD
+- `prepare:husky` - prepare husky hooks
 
 ## Inspirations
 - [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate)
