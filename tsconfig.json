@@ -5,6 +5,7 @@
         "files":true,
     },
     "compilerOptions": {
+        "target": "es6",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "preserveConstEnums": true,

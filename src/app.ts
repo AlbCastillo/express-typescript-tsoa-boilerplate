@@ -58,4 +58,5 @@ app.use(
 	swaggerUi.setup(swaggerJSON),
 );
 
+// export default server;
 export default app;

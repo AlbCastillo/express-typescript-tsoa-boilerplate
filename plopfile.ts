@@ -1,9 +1,12 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { NodePlopAPI } from 'plop';
+import moment from 'moment-timezone';
+
+const now = moment().format('YYYYMMDDHHmmss');
 
 // eslint-disable-next-line func-names
 export default function (plop: NodePlopAPI) {
-	// App Generator
+	// Module Generator
 	plop.setGenerator('module', {
 		description: 'Create TSOA Module',
 		prompts: [
@@ -14,30 +17,40 @@ export default function (plop: NodePlopAPI) {
 			},
 			{
 				type: 'input',
-				name: 'directory',
-				message: 'Introduce Folder directory(lowerCase)',
-			},
-			{
-				type: 'input',
 				name: 'name',
-				message: 'Introduce Model name(lowerCase)',
+				message: 'Introduce Model name(lowerCase):',
 			},
 		],
 		actions: [
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}.ts',
-				templateFile: 'plop-templates/interface.hbs',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}.model.ts',
+				templateFile: 'plop-templates/model.hbs',
 			},
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}sService.ts',
-				templateFile: 'plop-templates/serviceBlank.hbs',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}sService.ts',
+				templateFile: 'plop-templates/service.hbs',
 			},
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}sController.ts',
-				templateFile: 'plop-templates/controllerBlank.hbs',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}sController.ts',
+				templateFile: 'plop-templates/controller.hbs',
+			},
+			{
+				type: 'add',
+				path: `src/migrations/${now}-create-{{name}}s.js`,
+				templateFile: 'plop-templates/migration.hbs',
+			},
+			{
+				type: 'add',
+				path: `src/seeders/${now}-populate-{{name}}s.js`,
+				templateFile: 'plop-templates/seeder.hbs',
+			},
+			{
+				type: 'add',
+				path: 'src/common/requestsBody/{{name}}s.ts',
+				templateFile: 'plop-templates/requestBody.hbs',
 			},
 		],
 	});

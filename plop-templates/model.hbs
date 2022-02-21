@@ -1,0 +1,40 @@
+import { Optional } from 'sequelize';
+import {
+	Table,
+	Column,
+	Model,
+	PrimaryKey,
+	Default,
+	Unique,
+	DataType,
+	IsUUID,
+} from 'sequelize-typescript';
+import { v4 as uuid } from 'uuid';
+
+/**
+ * You can define your model in a less strict way
+ * https://www.npmjs.com/package/sequelize-typescript#model-definition
+ */
+export interface I{{pascalCase name}} {
+	id: string;
+	name: string;
+}
+
+export interface I{{pascalCase name}}Creation extends Optional<I{{pascalCase name}}, 'id'> {}
+
+@Table({
+	tableName: '{{name}}s',
+	timestamps: true,
+	version: true,
+})
+export class {{pascalCase name}} extends Model<I{{pascalCase name}}, I{{pascalCase name}}Creation> {
+	@IsUUID(4)
+	@PrimaryKey
+	@Unique
+	@Default(() => uuid())
+	@Column(DataType.TEXT)
+	id!: string;
+
+	@Column(DataType.TEXT)
+	name!: string;
+}

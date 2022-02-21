@@ -15,6 +15,7 @@ Swagger documentation, dependency injection container, error handler, logging sy
   - [Getting Started](#getting-started)
     - [Installation](#installation)
     - [Build a new module using Plop](#build-a-new-module-using-plop)
+    - [Sequelize Migrations and Seedings](#sequelize-migrations-and-seedings)
     - [Swagger-Documentation](#swagger-documentation)
     - [Husky hook](#husky-hook)
     - [Available scripts](#available-scripts)
@@ -31,6 +32,8 @@ Swagger documentation, dependency injection container, error handler, logging sy
 - [TSOA](https://tsoa-community.github.io/docs/getting-started.html): Clean Architecture Framework with integrated OpenAPI
 
 - [TSyringe](https://github.com/microsoft/tsyringe): A lightweight dependency injection container for TypeScript/JavaScript for constructor injection.
+
+- [Sequelize-typescript](https://github.com/RobinBuschmann/sequelize-typescript#readme): ORM 
 
 - [Helmet](https://helmetjs.github.io): Secure Express apps by setting HTTP headers 
   
@@ -91,14 +94,42 @@ yarn build
 ```bash
 yarn dev
 ```
-6. After that, go to: ```http://localhost:8080```
+6. After that, go to:
+ ```http://localhost:8080```
 
 
 ### Build a new module using Plop
+
 1. Execute the command:
  ```yarn plop:module ```
 2. Follow the terminal's instructions
 
+Generated files when the command is executed(name & version are prompt's input):
+
+- **Model** : *src/api/v<version>/<name>.model.ts*
+- **Service**: *src/api/v<version>/<name>sService.ts*
+- **Controller**: *src/api/v<version>/<name>sController.ts*
+- **RequestBody Interface**: *src/common/requestBody/<xxx>.ts*
+- **Migration** : *src/migrations/<YYYYMMDDHHmmss>-create-<name>s.js*
+- **Seeder** : *src/seeders/<YYYMMMDDHHmmss>-popultate-<name>.js*
+
+### Sequelize Migrations and Seedings
+- To execute migrations : 
+```bash 
+  yarn make:migrations
+```
+- To undo migrations:
+```bash
+ yarn undo:migrations
+```
+- To execute all seeders:
+```bash 
+  yarn make:seedings
+```
+- To undo all seeders:
+```bash
+ yarn undo:seedings
+```
 ### Swagger-Documentation
 
 API Documentation is automatically generated and hosted under `/api-doc`
@@ -118,7 +149,12 @@ Avoid hook : **git commit -m "Your message" --no-verify**
 - `yarn test` - Run all tests.
 - `yarn test:unit` - Run unit tests.
 - `yarn test:integration` - Run integration tests.
-- `yarn plop:module` -  generate a new module for API with a simple CRUD
+- `yarn plop:module` -  generate a new module for API with a simple CRUD including migration and seeder
+- `yarn ts:sequelize`: prefix to execute any sequelize-cli command
+- `yarn make:migrations`: execute sequelize migrations
+- `yarn undo:migrations`: undo sequelize migratiosn
+- `yarn make:seedings` : populate database
+- `yarn undo:seedings`: undo seedeings
 - `yarn prepare:husky` - prepare husky hooks
 
 ## Inspirations
@@ -126,5 +162,6 @@ Avoid hook : **git commit -m "Your message" --no-verify**
 - [danielfsouse/express-rest-boilerplate](https://github.com/danielfsousa/express-rest-boilerplate)
 - [vassalloandrea/better-logs-for-exrpess](https://dev.to/vassalloandrea/better-logs-for-expressjs-using-winston-and-morgan-with-typescript-516n)
 - [mert-turkmenoglu/dependency-injection-in-typescript](https://levelup.gitconnected.com/dependency-injection-in-typescript-2f66912d143c)
+- [sequelize-migrations](https://sequelize.org/master/manual/migrations.html)
 ## License
 [MIT](LICENSE.md)

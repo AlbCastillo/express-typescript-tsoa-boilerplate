@@ -1,0 +1,25 @@
+const { v4: uuidv4 } = require('uuid');
+
+module.exports = {
+	up: (queryInterface) => {
+		return queryInterface.bulkInsert('{{name}}s', [
+			{
+				id: uuidv4(),
+				version: 0,
+				name: 'Name1',
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			},
+			{
+				id: uuidv4(),
+				version: 0,
+				name: 'Name2',
+				createdAt: new Date(),
+				updatedAt: new Date(),
+			},
+		]);
+	},
+	down: (queryInterface) => {
+		return queryInterface.bulkDelete('{{name}}s', null, {});
+	},
+};
