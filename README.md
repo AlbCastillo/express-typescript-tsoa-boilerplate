@@ -5,9 +5,9 @@ This is a boilerplate for quickly building RESTful APIs using Node.js, Express, 
 This template comes with many features as : JWT authentication,hexagonal architecture, unit and integration tests, Model, Service & Controller (Module) generator
 Swagger documentation, dependency injection container, error handler, logging system and others.
 
-- [Branch Master](): Branch without ODM or ORM
-- [Branch: Mongoose](): Branch to use a MongoDB using mongoose as ODM
-- [Branch: Sequelize](): Branch to use PostgreSQL using sequelize as ORM
+- [Branch Master](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/master): Branch without ODM or ORM
+- [Branch: Mongoose](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/mongoose): Branch to use a MongoDB using mongoose as ODM
+- [Branch: Sequelize](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/sequelize): Branch to use PostgreSQL using sequelize as ORM
 
 ## Table of Contents
 - [Express TSOA Typescript Boilerplate](#express-tsoa-typescript-boilerplate)
