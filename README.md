@@ -5,6 +5,7 @@ This is a boilerplate for quickly building RESTful APIs using Node.js, Express, 
 This template comes with many features as : JWT authentication,hexagonal architecture, unit and integration tests, Model, Service & Controller (Module) generator
 Swagger documentation, dependency injection container, error handler, logging system and others.
 
+- [Branch Master](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/master): Branch without ODM or ORM
 - [Branch: Mongoose](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/mongoose): Branch to use a MongoDB using mongoose as ODM
 - [Branch: Sequelize](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/sequelize): Branch to use PostgreSQL using sequelize as ORM
 
@@ -121,16 +122,16 @@ To update your API Documentation you must modified the file ```src/swagger.json`
 Avoid hook : **git commit -m "Your message" --no-verify**
 ### Available scripts
 
-- `build` - Build the routes and specs from tsoa and compile typescript.
-- `lint` - Lint your TS code,
-- `lint:fix` - Lint and automatically fix your TS code.
-- `dev` - Run the server locally.
-- `clean` - Remove build, tsoa_generated and coverage folders,
-- `test` - Run all tests.
-- `test:unit` - Run unit tests.
-- `test:integration` - Run integration tests.
-- `plop:module` -  generate a new module for API with a simple CRUD
-- `prepare:husky` - prepare husky hooks
+- `yarn build` - Build the routes and specs from tsoa and compile typescript.
+- `yarn lint` - Lint your TS code,
+- `yarn lint:fix` - Lint and automatically fix your TS code.
+- `yarn dev` - Run the server locally.
+- `yarn clean` - Remove build, tsoa_generated and coverage folders,
+- `yarn test` - Run all tests.
+- `yarn test:unit` - Run unit tests.
+- `yarn test:integration` - Run integration tests.
+- `yarn plop:module` -  generate a new module for API with a simple CRUD
+- `yarn prepare:husky` - prepare husky hooks
 
 ## Inspirations
 - [hagopj13/node-express-boilerplate](https://github.com/hagopj13/node-express-boilerplate)
