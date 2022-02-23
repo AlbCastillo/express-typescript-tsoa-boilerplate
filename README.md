@@ -2,7 +2,7 @@
 
 This is a boilerplate for quickly building RESTful APIs using Node.js, Express, TSOA and Typescript
 
-This template comes with many features as : JWT authentication,hexagonal architecture, unit and integration tests, Model, Service & Controller (Module) generator
+This template comes with many features as : JWT authentication, unit and integration tests, module generator ( Model,Service,Controller),
 Swagger documentation, dependency injection container, error handler, logging system and others.
 
 - [Branch Master](https://github.com/AlbCastillo/express-typescript-tsoa-boilerplate/tree/master): Branch without ODM or ORM
