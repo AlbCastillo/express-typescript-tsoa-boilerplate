@@ -14,11 +14,6 @@ export default function (plop: NodePlopAPI) {
 			},
 			{
 				type: 'input',
-				name: 'directory',
-				message: 'Introduce Folder directory(lowerCase)',
-			},
-			{
-				type: 'input',
 				name: 'name',
 				message: 'Introduce Model name(lowerCase)',
 			},
@@ -26,17 +21,17 @@ export default function (plop: NodePlopAPI) {
 		actions: [
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}.ts',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}.ts',
 				templateFile: 'plop-templates/interface.hbs',
 			},
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}sService.ts',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}sService.ts',
 				templateFile: 'plop-templates/serviceBlank.hbs',
 			},
 			{
 				type: 'add',
-				path: 'src/api/v{{version}}/{{directory}}/{{name}}sController.ts',
+				path: 'src/api/v{{version}}/{{name}}s/{{name}}sController.ts',
 				templateFile: 'plop-templates/controllerBlank.hbs',
 			},
 		],
