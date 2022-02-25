@@ -23,7 +23,7 @@ export class {{pascalCase name}}sController extends Controller {
 		this.setStatus(200);
 		return this.{{name}}sService.get(id);
 	}
-	
+
 	@Get('/all')
 	public async getAll(): Promise<I{{pascalCase name}}[]> {
 		this.setStatus(200); // set return status 200

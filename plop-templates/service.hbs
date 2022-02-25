@@ -34,6 +34,19 @@ export class {{pascalCase name}}sService {
 		}
 	}
 
+	public async getAll(): Promise<I{{pascalCase name}}[]> {
+		try {
+			const {{name}}s = await {{pascalCase name}}Model.find();
+			return {{name}}s;
+		} catch (error: any) {
+			throw new ApiError({
+				statusCode: 500,
+				name: 'InternalServerError',
+				message: `Opps an error ocurred!`,
+			});
+		}
+	}
+
 	public async create({{name}}: { name: string }): Promise<void> {
 		try {
 			logger.info(`Creating a new {{pascalCase name}}`);
